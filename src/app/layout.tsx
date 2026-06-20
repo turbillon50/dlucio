@@ -4,22 +4,13 @@ import "./globals.css";
 import { DemoProvider } from "@/lib/demo-store";
 import { ModeSwitcher } from "@/components/mode-switcher";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
+const inter = Inter({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "Quiniela TM · Liga de Béisbol de Tijuana",
-  description:
-    "La quiniela oficial de la Liga de Béisbol Infantil y Juvenil Municipal de Tijuana. Apuéstale a tu equipo, suma aciertos y gana la bolsa.",
+  description: "La quiniela oficial de la Liga de Béisbol Infantil y Juvenil Municipal de Tijuana. Apóyale a tu equipo y gánate la bolsa.",
   manifest: "/manifest.json",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "Quiniela TM",
-  },
+  appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "Quiniela TM" },
   icons: {
     icon: [
       { url: "/icons/icon-32.png", sizes: "32x32", type: "image/png" },
@@ -37,12 +28,10 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${inter.variable}`}>
-      <body className="grain min-h-[100dvh] antialiased">
+      <body className="min-h-[100dvh] antialiased">
         <DemoProvider>
           {children}
           <ModeSwitcher />

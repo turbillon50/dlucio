@@ -1,29 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  /* Identidad Liga TM */
+  /* Liga TM */
   --tm-azul: #010173;
-  --tm-azul-mid: #24328a;
-  --tm-dorado: #d4ba28;
-  /* Premium obsidian (D'Lucio) */
+  --tm-azul-mid: #2433a0;
+  --tm-dorado: #c9a227;
+  /* D'Lucio */
+  --plata: #c4c7cf;
+  --rojo: #d62828;
+  /* Dark (the game) */
   --obsidian: #0a0814;
   --obsidian-2: #0d0b1a;
   --surface: #12101f;
-  --surface-2: #181530;
-  --plata: #b0b3af;
-  --rojo: #c83729;
   --ink: #f0f4ff;
   --muted: #8b90b5;
   --line: rgba(255,255,255,0.07);
+  /* Light (Airbnb-style public) */
+  --paper: #f5f5f4;
+  --paper-2: #ffffff;
+  --ink-d: #1a1a24;
+  --muted-d: #6b6f76;
+  --line-d: rgba(20,20,30,0.08);
 }
 
 @theme inline {
   --color-obsidian: var(--obsidian);
-  --color-surface: var(--surface);
+  --color-paper: var(--paper);
   --color-azul: var(--tm-azul);
   --color-dorado: var(--tm-dorado);
+  --color-rojo: var(--rojo);
   --color-ink: var(--ink);
-  --color-muted: var(--muted);
   --font-sans: var(--font-sans);
 }
 
@@ -35,78 +41,71 @@ html, body {
   font-family: var(--font-sans), system-ui, sans-serif;
   overscroll-behavior: none;
 }
+body { min-height: 100dvh; }
 
-body {
+/* ============ LIGHT PAGE (Airbnb-style) ============ */
+.light {
+  background: var(--paper);
+  color: var(--ink-d);
+  min-height: 100dvh;
+}
+.lcard {
+  background: var(--paper-2);
+  border: 1px solid var(--line-d);
+  border-radius: 22px;
+  box-shadow: 0 1px 2px rgba(20,20,30,0.04), 0 10px 30px rgba(20,20,30,0.07);
+}
+.lsoft {
+  background: var(--paper-2);
+  border: 1px solid var(--line-d);
+  border-radius: 18px;
+  box-shadow: 0 1px 3px rgba(20,20,30,0.05);
+}
+
+/* ============ DARK PAGE (the game) ============ */
+.dark-wrap {
   background:
-    radial-gradient(900px 500px at 50% -10%, rgba(36,50,138,0.25), transparent 60%),
-    radial-gradient(700px 400px at 100% 100%, rgba(212,186,40,0.06), transparent 55%),
+    radial-gradient(900px 500px at 50% -10%, rgba(36,50,138,0.22), transparent 60%),
+    radial-gradient(700px 400px at 100% 100%, rgba(201,162,39,0.06), transparent 55%),
     var(--obsidian);
   min-height: 100dvh;
 }
-
-/* Film grain overlay */
-.grain::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 0; height: 0; }
-
-/* Glassmorphism card */
 .glass {
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
   border: 1px solid var(--line);
   backdrop-filter: blur(12px);
 }
-
 .card {
   background: linear-gradient(180deg, var(--surface), var(--obsidian-2));
   border: 1px solid var(--line);
   border-radius: 18px;
 }
 
-/* Golden gradient text */
+/* ============ Shared text effects ============ */
 .gold {
-  background: linear-gradient(135deg, #f5e07a, var(--tm-dorado) 50%, #9c8410);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background: linear-gradient(135deg, #f0d877, var(--tm-dorado) 50%, #8f7615);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-
-/* Chrome silver text */
 .chrome {
   background: linear-gradient(180deg, #ffffff, #c8ccd8 45%, #8a8f9e);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.chrome-d {
+  background: linear-gradient(180deg, #2a2a38, #4a4a5e 50%, #1a1a24);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
-.live-dot {
-  width: 8px; height: 8px; border-radius: 99px; background: #2ee06a;
-  box-shadow: 0 0 0 0 rgba(46,224,106,0.6);
-  animation: pulse 1.8s infinite;
-}
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(46,224,106,0.55); }
-  70% { box-shadow: 0 0 0 10px rgba(46,224,106,0); }
-  100% { box-shadow: 0 0 0 0 rgba(46,224,106,0); }
-}
+.live-dot { width: 8px; height: 8px; border-radius: 99px; background: #16a34a; box-shadow: 0 0 0 0 rgba(22,163,74,0.5); animation: pulse 1.8s infinite; }
+.live-dot-d { width: 8px; height: 8px; border-radius: 99px; background: #d62828; box-shadow: 0 0 0 0 rgba(214,40,40,0.5); animation: pulse 1.8s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(22,163,74,0.5); } 70% { box-shadow: 0 0 0 9px rgba(22,163,74,0); } 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); } }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+::-webkit-scrollbar { width: 0; height: 0; }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-.skeleton {
-  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
+/* Film grain (dark game only) */
+.grain::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
