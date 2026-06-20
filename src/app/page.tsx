@@ -16,7 +16,7 @@ const up = (d = 0) => ({
 export default function Landing() {
   const top5 = [...TEAMS].slice(0, 5);
   return (
-    <div className="light relative z-10 mx-auto max-w-md pb-28">
+    <div className="light mx-auto max-w-md pb-28">
       <Splash />
 
       {/* Top bar */}

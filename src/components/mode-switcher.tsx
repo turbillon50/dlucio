@@ -31,8 +31,8 @@ export function ModeSwitcher() {
       <motion.button
         whileTap={{ scale: 0.94 }}
         onClick={() => setOpen(true)}
-        className={`fixed bottom-[84px] left-1/2 z-[55] -translate-x-1/2 sm:bottom-5 flex items-center gap-2 rounded-full px-4 py-2 shadow-xl backdrop-blur-md ${
-          onLight ? "border border-black/10 bg-white/90" : "border border-white/15 bg-white/10"
+        className={`fixed left-1/2 z-[55] -translate-x-1/2 flex items-center gap-2 rounded-full px-4 py-2 shadow-xl backdrop-blur-md ${
+          onLight ? "bottom-[150px] border border-black/10 bg-white/90 sm:bottom-[150px]" : "bottom-[84px] border border-white/15 bg-white/10 sm:bottom-5"
         }`}
       >
         <span className="text-sm">🎬</span>
