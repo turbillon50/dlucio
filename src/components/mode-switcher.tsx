@@ -18,44 +18,30 @@ export function ModeSwitcher() {
 
   if (pathname?.startsWith("/entrar") || pathname?.startsWith("/registro")) return null;
 
-  const onLight = pathname === "/";
   const go = (m: Mode, route: string) => {
-    setMode(m);
-    router.push(route);
-    setOpen(false);
+    setMode(m); router.push(route); setOpen(false);
   };
 
+  // Invisible 32x32 trigger — bottom-right corner, no text, no icon
   return (
     <>
-      {/* Trigger — small centered pill, bottom center, above any bottom nav */}
-      <motion.button
-        whileTap={{ scale: 0.94 }}
+      {/* Secret trigger: tiny invisible tap zone bottom-right */}
+      <button
         onClick={() => setOpen(true)}
-        className={`fixed left-1/2 z-[55] -translate-x-1/2 flex items-center gap-2 rounded-full px-4 py-2 shadow-xl backdrop-blur-md ${
-          onLight ? "bottom-[150px] border border-black/10 bg-white/90 sm:bottom-[150px]" : "bottom-[84px] border border-white/15 bg-white/10 sm:bottom-5"
-        }`}
-      >
-        <span className="text-sm">🎬</span>
-        <span className={`text-[11px] font-bold tracking-wide ${onLight ? "text-[#1a1a24]" : "text-white/90"}`}>
-          Demo · {MODES.find((m) => m.key === mode)?.label}
-        </span>
-      </motion.button>
+        aria-hidden
+        className="fixed bottom-1 right-1 z-[55] h-8 w-8 opacity-0"
+      />
 
-      {/* Bottom sheet — slides up from the bottom, full width */}
       <AnimatePresence>
         {open && (
           <>
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
               className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm"
             />
             <motion.div
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "100%" }}
+              initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 320 }}
               className="fixed bottom-0 left-1/2 z-[61] w-full max-w-md -translate-x-1/2 rounded-t-3xl border-t border-white/10 bg-[#0d0b1a] p-5 pb-8"
             >
