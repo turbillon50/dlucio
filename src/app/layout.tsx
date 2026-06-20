@@ -1,0 +1,53 @@
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { DemoProvider } from "@/lib/demo-store";
+import { ModeSwitcher } from "@/components/mode-switcher";
+
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Quiniela TM · Liga de Béisbol de Tijuana",
+  description:
+    "La quiniela oficial de la Liga de Béisbol Infantil y Juvenil Municipal de Tijuana. Apuéstale a tu equipo, suma aciertos y gana la bolsa.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Quiniela TM",
+  },
+  icons: {
+    icon: [
+      { url: "/icons/icon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/icons/apple-touch-icon.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0814",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="es" className={`${inter.variable}`}>
+      <body className="grain min-h-[100dvh] antialiased">
+        <DemoProvider>
+          {children}
+          <ModeSwitcher />
+        </DemoProvider>
+      </body>
+    </html>
+  );
+}
