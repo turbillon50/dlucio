@@ -45,10 +45,10 @@ export default function PerfilPage() {
           </div>
           <div className="relative p-6">
             <div className="flex items-start justify-between">
-              <span className="rounded-full bg-[#d4ba28]/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#d4ba28]">
+              <span className="rounded-full bg-[#d4ba28]/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[var(--gold)]">
                 Jugador · Jornada 14
               </span>
-              <Link href="/app/perfil" className="text-white/40">
+              <Link href="/app/perfil" className="text-[var(--t3)]">
                 <Ico.shield size={20} />
               </Link>
             </div>
@@ -68,26 +68,26 @@ export default function PerfilPage() {
               </motion.div>
               <div>
                 <h1 className="text-2xl font-black leading-tight">{ME.name}</h1>
-                <p className="text-sm text-white/50">Tijuana, B.C.</p>
-                <div className="mt-1.5 flex items-center gap-1.5 text-[#d4ba28]">
+                <p className="text-sm text-[var(--t2)]">Tijuana, B.C.</p>
+                <div className="mt-1.5 flex items-center gap-1.5 text-[var(--gold)]">
                   <Ico.fire size={14} /><span className="text-xs font-bold">Racha de 5 jornadas</span>
                 </div>
               </div>
             </div>
 
             {/* Stats row */}
-            <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/8">
-              <div className="bg-white/[0.03] p-3 text-center">
+            <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-[var(--bd)]">
+              <div className="bg-[var(--hi)] p-3 text-center">
                 <p className="text-2xl font-black gold"><Counter to={ME.points} /></p>
-                <p className="text-[10px] uppercase tracking-wide text-white/45">Puntos</p>
+                <p className="text-[10px] uppercase tracking-wide text-[var(--t2)]">Puntos</p>
               </div>
-              <div className="bg-white/[0.03] p-3 text-center">
+              <div className="bg-[var(--hi)] p-3 text-center">
                 <p className="text-2xl font-black"><Counter to={ME.hits} /></p>
-                <p className="text-[10px] uppercase tracking-wide text-white/45">Aciertos</p>
+                <p className="text-[10px] uppercase tracking-wide text-[var(--t2)]">Aciertos</p>
               </div>
-              <div className="bg-white/[0.03] p-3 text-center">
-                <p className="text-2xl font-black text-emerald-300"><Counter to={acc} />%</p>
-                <p className="text-[10px] uppercase tracking-wide text-white/45">Efectividad</p>
+              <div className="bg-[var(--hi)] p-3 text-center">
+                <p className="text-2xl font-black text-[var(--pos)]"><Counter to={acc} />%</p>
+                <p className="text-[10px] uppercase tracking-wide text-[var(--t2)]">Efectividad</p>
               </div>
             </div>
           </div>
@@ -108,7 +108,7 @@ export default function PerfilPage() {
               style={{ opacity: b.on ? 1 : 0.35 }}
             >
               <span className="text-2xl" style={{ filter: b.on ? "none" : "grayscale(1)" }}>{b.icon}</span>
-              <span className="text-[10px] font-semibold leading-tight text-white/70">{b.label}</span>
+              <span className="text-[10px] font-semibold leading-tight text-[var(--t2)]">{b.label}</span>
             </motion.div>
           ))}
         </div>
@@ -117,19 +117,19 @@ export default function PerfilPage() {
       {/* Acceso rápido */}
       <div className="mt-6 space-y-2 px-4">
         <Link href="/app/galeria" className="card flex items-center gap-3 p-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#010173] text-[#d4ba28]"><Ico.camera size={20} /></div>
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#010173] text-[var(--gold)]"><Ico.camera size={20} /></div>
           <span className="flex-1 font-semibold">Galería de fotos</span>
-          <Ico.arrowUp size={16} className="rotate-90 text-white/30" />
+          <Ico.arrowUp size={16} className="rotate-90 text-[var(--t3)]" />
         </Link>
         <Link href="/app/wallet" className="card flex items-center gap-3 p-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#010173] text-[#d4ba28]"><Ico.wallet size={20} /></div>
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#010173] text-[var(--gold)]"><Ico.wallet size={20} /></div>
           <span className="flex-1 font-semibold">Mi bolsa</span>
           <span className="text-sm font-bold chrome">${POOL.myBalance}</span>
         </Link>
       </div>
 
       <div className="mt-6 px-4">
-        <Link href="/" className="block rounded-2xl border border-white/10 py-3 text-center text-sm font-semibold text-white/50">
+        <Link href="/" className="block rounded-2xl border border-[var(--bd)] py-3 text-center text-sm font-semibold text-[var(--t2)]">
           Cerrar sesión
         </Link>
       </div>

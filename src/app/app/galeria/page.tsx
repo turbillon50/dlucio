@@ -16,7 +16,7 @@ export default function GaleriaPage() {
           <Ico.plus size={15} /> Subir foto
         </button>
       </div>
-      <p className="mt-1 text-sm text-white/55">Los mejores momentos de la liga, por la comunidad</p>
+      <p className="mt-1 text-sm text-[var(--t2)]">Los mejores momentos de la liga, por la comunidad</p>
 
       <div className="mt-5 grid grid-cols-2 gap-3">
         {PHOTOS.map((p, i) => {
@@ -35,16 +35,16 @@ export default function GaleriaPage() {
                   <TeamBadge team={team} size={56} />
                 </div>
                 <div className="absolute bottom-2 left-2">
-                  <Ico.camera size={16} className="text-white/40" />
+                  <Ico.camera size={16} className="text-[var(--t3)]" />
                 </div>
               </div>
               <div className="p-3">
                 <p className="text-[13px] font-medium leading-snug">{p.caption}</p>
                 <div className="mt-2 flex items-center justify-between">
-                  <span className="text-[11px] text-white/45">{p.author}</span>
+                  <span className="text-[11px] text-[var(--t2)]">{p.author}</span>
                   <button onClick={() => toggle(p.id)} className="flex items-center gap-1">
-                    <Ico.heart size={15} className={isLiked ? "text-red-400" : "text-white/30"} />
-                    <span className="text-[11px] text-white/50">{p.likes + (isLiked ? 1 : 0)}</span>
+                    <Ico.heart size={15} className={isLiked ? "text-red-400" : "text-[var(--t3)]"} />
+                    <span className="text-[11px] text-[var(--t2)]">{p.likes + (isLiked ? 1 : 0)}</span>
                   </button>
                 </div>
               </div>

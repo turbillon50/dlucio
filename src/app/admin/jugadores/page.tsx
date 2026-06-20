@@ -7,21 +7,21 @@ export default function JugadoresPage() {
   return (
     <div className="px-4 pt-5">
       <h1 className="text-xl font-black">Jugadores</h1>
-      <p className="mt-1 text-sm text-white/55">{POOL.participants} papás inscritos esta jornada</p>
+      <p className="mt-1 text-sm text-[var(--t2)]">{POOL.participants} papás inscritos esta jornada</p>
 
       {/* Resumen pagos */}
       <div className="mt-4 grid grid-cols-3 gap-2.5">
         <div className="card p-3 text-center">
-          <p className="text-xl font-black text-emerald-300">{POOL.participants}</p>
-          <p className="text-[10px] text-white/45">Pagados</p>
+          <p className="text-xl font-black text-[var(--pos)]">{POOL.participants}</p>
+          <p className="text-[10px] text-[var(--t2)]">Pagados</p>
         </div>
         <div className="card p-3 text-center">
           <p className="text-xl font-black text-amber-300">6</p>
-          <p className="text-[10px] text-white/45">Pendientes</p>
+          <p className="text-[10px] text-[var(--t2)]">Pendientes</p>
         </div>
         <div className="card p-3 text-center">
           <p className="text-xl font-black gold">${(POOL.total / 1000).toFixed(1)}k</p>
-          <p className="text-[10px] text-white/45">Recaudado</p>
+          <p className="text-[10px] text-[var(--t2)]">Recaudado</p>
         </div>
       </div>
 
@@ -38,9 +38,9 @@ export default function JugadoresPage() {
             </div>
             <div className="flex-1">
               <p className="text-sm font-semibold">{p.name}</p>
-              <p className="text-[11px] text-white/45">{p.hits} aciertos · {p.points} pts</p>
+              <p className="text-[11px] text-[var(--t2)]">{p.hits} aciertos · {p.points} pts</p>
             </div>
-            <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[10px] font-bold text-emerald-300">
+            <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[10px] font-bold text-[var(--pos)]">
               Pagado
             </span>
           </motion.div>

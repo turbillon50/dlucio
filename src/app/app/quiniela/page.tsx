@@ -23,18 +23,18 @@ export default function QuinielaPage() {
   return (
     <div className="px-4 pt-6">
       <h1 className="text-2xl font-black">Mi Quiniela</h1>
-      <p className="mt-1 text-sm text-white/55">Jornada 14 · elige al ganador de cada duelo</p>
+      <p className="mt-1 text-sm text-[var(--t2)]">Jornada 14 · elige al ganador de cada duelo</p>
 
       {/* Progress bar */}
       <div className="mt-4 flex items-center gap-3">
-        <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/8">
+        <div className="h-2 flex-1 overflow-hidden rounded-full bg-[var(--hi)]">
           <motion.div
             className="h-full rounded-full bg-[#d4ba28]"
             animate={{ width: `${(done / total) * 100}%` }}
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
           />
         </div>
-        <span className="text-sm font-bold text-[#d4ba28]">{done}/{total}</span>
+        <span className="text-sm font-bold text-[var(--gold)]">{done}/{total}</span>
       </div>
 
       {/* Matches */}
@@ -51,7 +51,7 @@ export default function QuinielaPage() {
               transition={{ delay: i * 0.04 }}
               className="card p-3"
             >
-              <div className="mb-2 text-center text-[11px] text-white/40">{m.date} · {m.time} · {m.field}</div>
+              <div className="mb-2 text-center text-[11px] text-[var(--t3)]">{m.date} · {m.time} · {m.field}</div>
               <div className="grid grid-cols-2 gap-2">
                 {[home, away].map((team) => {
                   const sel = pick === team.id;
@@ -76,10 +76,10 @@ export default function QuinielaPage() {
                       )}
                       <div className="flex flex-col items-center gap-2">
                         <TeamBadge team={team} size={44} />
-                        <span className={`text-[13px] font-semibold ${sel ? "text-[#d4ba28]" : "text-white/80"}`}>
+                        <span className={`text-[13px] font-semibold ${sel ? "text-[var(--gold)]" : "text-[var(--t1)]"}`}>
                           {team.name}
                         </span>
-                        <span className="text-[10px] text-white/40">{team.wins}-{team.losses}</span>
+                        <span className="text-[10px] text-[var(--t3)]">{team.wins}-{team.losses}</span>
                       </div>
                     </button>
                   );
@@ -93,10 +93,10 @@ export default function QuinielaPage() {
       {/* Inscripción / pago */}
       <div className="card mt-5 p-4">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-white/60">Inscripción de la jornada</span>
+          <span className="text-sm text-[var(--t2)]">Inscripción de la jornada</span>
           <span className="text-lg font-black">${POOL.entryFee}</span>
         </div>
-        <p className="mt-1 text-[11px] text-white/40">Ya cubierta con tus créditos · {POOL.myCredits} jornadas restantes</p>
+        <p className="mt-1 text-[11px] text-[var(--t3)]">Ya cubierta con tus créditos · {POOL.myCredits} jornadas restantes</p>
       </div>
 
       <motion.button
@@ -118,7 +118,7 @@ export default function QuinielaPage() {
             initial={{ opacity: 0, y: 40, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-bold text-white shadow-xl"
+            className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-bold text-[var(--t1)] shadow-xl"
           >
             ✓ ¡Quiniela confirmada! Mucha suerte ⚾
           </motion.div>

@@ -17,13 +17,13 @@ export default function ResultadosPage() {
   return (
     <div className="px-4 pt-5">
       <h1 className="text-xl font-black">Capturar resultados</h1>
-      <p className="mt-1 text-sm text-white/55">Jornada 14 · ingresa el marcador de cada partido</p>
+      <p className="mt-1 text-sm text-[var(--t2)]">Jornada 14 · ingresa el marcador de cada partido</p>
 
       <div className="mt-2 flex items-center gap-2 text-[13px]">
-        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/8">
+        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[var(--hi)]">
           <motion.div className="h-full bg-[#d4ba28]" animate={{ width: `${(filled / CURRENT_ROUND.length) * 100}%` }} />
         </div>
-        <span className="font-bold text-[#d4ba28]">{filled}/{CURRENT_ROUND.length}</span>
+        <span className="font-bold text-[var(--gold)]">{filled}/{CURRENT_ROUND.length}</span>
       </div>
 
       <div className="mt-5 space-y-3">
@@ -37,7 +37,7 @@ export default function ResultadosPage() {
               initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
               className="card p-3.5"
             >
-              <p className="mb-2.5 text-center text-[11px] text-white/40">{m.date} · {m.time} · {m.field}</p>
+              <p className="mb-2.5 text-center text-[11px] text-[var(--t3)]">{m.date} · {m.time} · {m.field}</p>
               <div className="flex items-center gap-3">
                 <div className="flex flex-1 items-center gap-2">
                   <TeamBadge team={home} size={34} />
@@ -48,15 +48,15 @@ export default function ResultadosPage() {
                   value={sc.h}
                   onChange={(e) => set(m.id, "h", e.target.value)}
                   placeholder="0"
-                  className="h-11 w-12 rounded-xl border border-white/10 bg-white/5 text-center text-lg font-black text-white outline-none focus:border-[#d4ba28]"
+                  className="h-11 w-12 rounded-xl border border-[var(--bd)] bg-[var(--hi)] text-center text-lg font-black text-[var(--t1)] outline-none focus:border-[#d4ba28]"
                 />
-                <span className="text-white/30">–</span>
+                <span className="text-[var(--t3)]">–</span>
                 <input
                   inputMode="numeric"
                   value={sc.a}
                   onChange={(e) => set(m.id, "a", e.target.value)}
                   placeholder="0"
-                  className="h-11 w-12 rounded-xl border border-white/10 bg-white/5 text-center text-lg font-black text-white outline-none focus:border-[#d4ba28]"
+                  className="h-11 w-12 rounded-xl border border-[var(--bd)] bg-[var(--hi)] text-center text-lg font-black text-[var(--t1)] outline-none focus:border-[#d4ba28]"
                 />
                 <div className="flex flex-1 items-center justify-end gap-2">
                   <span className="text-sm font-semibold">{away.name}</span>
@@ -80,7 +80,7 @@ export default function ResultadosPage() {
         {saved && (
           <motion.div
             initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 whitespace-nowrap rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-bold text-white shadow-xl"
+            className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 whitespace-nowrap rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-bold text-[var(--t1)] shadow-xl"
           >
             ✓ Resultados publicados · tabla actualizada
           </motion.div>

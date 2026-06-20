@@ -28,10 +28,10 @@ export default function WalletPage() {
       >
         <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#010173]/40 blur-3xl" />
         <div className="absolute -bottom-12 -left-8 h-40 w-40 rounded-full bg-[#d4ba28]/8 blur-3xl" />
-        <p className="relative text-[11px] uppercase tracking-wider text-white/50">Saldo disponible</p>
+        <p className="relative text-[11px] uppercase tracking-wider text-[var(--t2)]">Saldo disponible</p>
         <p className="relative mt-1 text-5xl font-black chrome">${POOL.myBalance}</p>
         <div className="relative mt-4 flex items-center gap-2">
-          <span className="rounded-full bg-[#d4ba28]/15 px-3 py-1 text-xs font-bold text-[#d4ba28]">
+          <span className="rounded-full bg-[#d4ba28]/15 px-3 py-1 text-xs font-bold text-[var(--gold)]">
             {POOL.myCredits} jornadas pagadas
           </span>
         </div>
@@ -48,14 +48,14 @@ export default function WalletPage() {
 
       {/* Premio destacado */}
       <div className="card mt-4 flex items-center gap-3 p-4" style={{ borderColor: "rgba(46,224,106,0.2)" }}>
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-300">
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/15 text-[var(--pos)]">
           <Ico.trophy size={22} />
         </div>
         <div className="flex-1">
           <p className="text-sm font-bold">Último premio cobrado</p>
-          <p className="text-[12px] text-white/50">3er lugar · Jornada 12</p>
+          <p className="text-[12px] text-[var(--t2)]">3er lugar · Jornada 12</p>
         </div>
-        <span className="text-lg font-black text-emerald-300">+$1,240</span>
+        <span className="text-lg font-black text-[var(--pos)]">+$1,240</span>
       </div>
 
       {/* Movimientos */}
@@ -82,9 +82,9 @@ export default function WalletPage() {
               </div>
               <div className="flex-1">
                 <p className="text-[13px] font-semibold">{mv.desc}</p>
-                <p className="text-[11px] text-white/40">{mv.date} · {mv.method}</p>
+                <p className="text-[11px] text-[var(--t3)]">{mv.date} · {mv.method}</p>
               </div>
-              <span className={`text-sm font-bold ${isPos ? "text-emerald-300" : "text-white/60"}`}>
+              <span className={`text-sm font-bold ${isPos ? "text-[var(--pos)]" : "text-[var(--t2)]"}`}>
                 {isPos ? "+" : ""}${Math.abs(mv.amount).toLocaleString("es-MX")}
               </span>
             </motion.div>
@@ -104,11 +104,11 @@ export default function WalletPage() {
             <motion.div
               initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 26, stiffness: 240 }}
-              className="fixed bottom-0 left-1/2 z-50 w-full max-w-md -translate-x-1/2 rounded-t-3xl border-t border-white/10 bg-[#0d0b1a] p-5 pb-8"
+              className="fixed bottom-0 left-1/2 z-50 w-full max-w-md -translate-x-1/2 rounded-t-3xl border-t border-[var(--bd)] bg-[var(--srf2)] p-5 pb-8"
             >
-              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-white/20" />
+              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-[var(--hi2)]" />
               <h3 className="text-lg font-black">Recargar saldo</h3>
-              <p className="mt-1 text-sm text-white/50">Elige cómo quieres pagar tu inscripción</p>
+              <p className="mt-1 text-sm text-[var(--t2)]">Elige cómo quieres pagar tu inscripción</p>
 
               <div className="mt-5 space-y-3">
                 {/* Opción A: Créditos */}
@@ -117,14 +117,14 @@ export default function WalletPage() {
                   className="flex w-full items-center gap-3 rounded-2xl border p-4 text-left transition"
                   style={{ borderColor: method === "creditos" ? "#d4ba28" : "rgba(255,255,255,0.1)", background: method === "creditos" ? "rgba(212,186,40,0.06)" : "transparent" }}
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#010173] text-[#d4ba28]">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#010173] text-[var(--gold)]">
                     <Ico.wallet size={22} />
                   </div>
                   <div className="flex-1">
                     <p className="font-bold">Créditos / Transferencia</p>
-                    <p className="text-[12px] text-white/50">Deposita y el organizador acredita tu saldo</p>
+                    <p className="text-[12px] text-[var(--t2)]">Deposita y el organizador acredita tu saldo</p>
                   </div>
-                  {method === "creditos" && <Ico.check size={20} className="text-[#d4ba28]" />}
+                  {method === "creditos" && <Ico.check size={20} className="text-[var(--gold)]" />}
                 </button>
 
                 {/* Opción B: Mercado Pago */}
@@ -138,9 +138,9 @@ export default function WalletPage() {
                   </div>
                   <div className="flex-1">
                     <p className="font-bold">Mercado Pago</p>
-                    <p className="text-[12px] text-white/50">Tarjeta, débito o saldo MP · al instante</p>
+                    <p className="text-[12px] text-[var(--t2)]">Tarjeta, débito o saldo MP · al instante</p>
                   </div>
-                  {method === "mp" && <Ico.check size={20} className="text-[#d4ba28]" />}
+                  {method === "mp" && <Ico.check size={20} className="text-[var(--gold)]" />}
                 </button>
               </div>
 
@@ -162,7 +162,7 @@ export default function WalletPage() {
         {toast && (
           <motion.div
             initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            className="fixed bottom-24 left-1/2 z-[60] -translate-x-1/2 whitespace-nowrap rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-bold text-white shadow-xl"
+            className="fixed bottom-24 left-1/2 z-[60] -translate-x-1/2 whitespace-nowrap rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-bold text-[var(--t1)] shadow-xl"
           >
             {toast}
           </motion.div>

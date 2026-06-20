@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { CURRENT_ROUND, teamById, ME, POOL, LEADERBOARD } from "@/lib/demo-data";
 import { TeamBadge, Ico, StatusPill } from "@/components/ui";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function UserHome() {
   const myRank = LEADERBOARD.findIndex((p) => p.id === ME.id) + 1;
@@ -14,14 +15,17 @@ export default function UserHome() {
       {/* Header saludo */}
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-white/50">Hola de nuevo,</p>
+          <p className="text-sm text-[var(--t2)]">Hola de nuevo,</p>
           <h1 className="text-2xl font-black">{ME.name.split(" ")[0]} 👋</h1>
         </div>
-        <Link href="/app/perfil">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-[#010173] to-[#24328a] text-sm font-bold ring-2 ring-[#d4ba28]/40">
-            {ME.avatar}
-          </div>
-        </Link>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Link href="/app/perfil">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-[#010173] to-[#24328a] text-sm font-bold text-white ring-2 ring-[#d4ba28]/40">
+              {ME.avatar}
+            </div>
+          </Link>
+        </div>
       </div>
 
       {/* Card de mi posición + bolsa */}
@@ -31,14 +35,14 @@ export default function UserHome() {
         className="card mt-5 grid grid-cols-2 gap-px overflow-hidden"
       >
         <div className="p-4">
-          <p className="text-[11px] uppercase tracking-wider text-white/45">Tu posición</p>
+          <p className="text-[11px] uppercase tracking-wider text-[var(--t2)]">Tu posición</p>
           <p className="mt-1 text-3xl font-black gold">#{myRank}</p>
-          <p className="text-xs text-white/50">{ME.hits} aciertos</p>
+          <p className="text-xs text-[var(--t2)]">{ME.hits} aciertos</p>
         </div>
-        <div className="border-l border-white/8 p-4">
-          <p className="text-[11px] uppercase tracking-wider text-white/45">Bolsa actual</p>
+        <div className="border-l border-[var(--bd)] p-4">
+          <p className="text-[11px] uppercase tracking-wider text-[var(--t2)]">Bolsa actual</p>
           <p className="mt-1 text-3xl font-black chrome">${(POOL.total / 1000).toFixed(1)}k</p>
-          <p className="text-xs text-white/50">{POOL.participants} jugando</p>
+          <p className="text-xs text-[var(--t2)]">{POOL.participants} jugando</p>
         </div>
       </motion.div>
 
@@ -65,11 +69,11 @@ export default function UserHome() {
           </div>
           <div className="flex-1">
             <p className="font-bold">Tu quiniela de la Jornada 14</p>
-            <p className="text-[13px] text-white/55">
+            <p className="text-[13px] text-[var(--t2)]">
               {picked < CURRENT_ROUND.length ? `Te faltan ${CURRENT_ROUND.length - picked} pronósticos` : "¡Completa! Listo para la jornada"}
             </p>
           </div>
-          <Ico.arrowUp size={18} className="rotate-90 text-white/30" />
+          <Ico.arrowUp size={18} className="rotate-90 text-[var(--t3)]" />
         </motion.div>
       </Link>
 
@@ -91,23 +95,23 @@ export default function UserHome() {
               transition={{ delay: 0.1 + i * 0.05 }}
               className="card p-3.5"
             >
-              <div className="mb-2.5 flex items-center justify-between text-[11px] text-white/45">
+              <div className="mb-2.5 flex items-center justify-between text-[11px] text-[var(--t2)]">
                 <span>{m.date} · {m.time}</span>
                 <span>{m.field}</span>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <TeamBadge team={home} size={36} />
-                  <span className={`text-sm font-semibold ${m.pick === home.id ? "text-[#d4ba28]" : ""}`}>{home.name}</span>
+                  <span className={`text-sm font-semibold ${m.pick === home.id ? "text-[var(--gold)]" : ""}`}>{home.name}</span>
                 </div>
-                <span className="text-[11px] font-bold text-white/30">VS</span>
+                <span className="text-[11px] font-bold text-[var(--t3)]">VS</span>
                 <div className="flex items-center gap-2.5">
-                  <span className={`text-sm font-semibold ${m.pick === away.id ? "text-[#d4ba28]" : ""}`}>{away.name}</span>
+                  <span className={`text-sm font-semibold ${m.pick === away.id ? "text-[var(--gold)]" : ""}`}>{away.name}</span>
                   <TeamBadge team={away} size={36} />
                 </div>
               </div>
               {m.pick && (
-                <div className="mt-2.5 flex items-center gap-1.5 text-[11px] text-[#d4ba28]">
+                <div className="mt-2.5 flex items-center gap-1.5 text-[11px] text-[var(--gold)]">
                   <Ico.check size={13} /> Pronosticaste: {teamById(m.pick).name}
                 </div>
               )}
@@ -116,7 +120,7 @@ export default function UserHome() {
         })}
       </div>
 
-      <Link href="/app/quiniela" className="mt-4 block rounded-2xl border border-[#d4ba28]/30 bg-[#d4ba28]/5 py-3 text-center text-sm font-bold text-[#d4ba28]">
+      <Link href="/app/quiniela" className="mt-4 block rounded-2xl border border-[#d4ba28]/30 bg-[#d4ba28]/5 py-3 text-center text-sm font-bold text-[var(--gold)]">
         Completar mi quiniela →
       </Link>
     </div>

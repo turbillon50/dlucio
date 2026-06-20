@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { DemoProvider } from "@/lib/demo-store";
+import { ThemeProvider } from "@/lib/theme";
 import { ModeSwitcher } from "@/components/mode-switcher";
 
 const inter = Inter({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0814",
+  themeColor: "#f5f5f4",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -32,10 +33,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="es" className={`${inter.variable}`}>
       <body className="min-h-[100dvh] antialiased">
-        <DemoProvider>
-          {children}
-          <ModeSwitcher />
-        </DemoProvider>
+        <ThemeProvider>
+          <DemoProvider>
+            {children}
+            <ModeSwitcher />
+          </DemoProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,93 +1,104 @@
 @import "tailwindcss";
 
 :root {
-  /* Liga TM */
   --tm-azul: #010173;
-  --tm-azul-mid: #2433a0;
   --tm-dorado: #c9a227;
-  /* D'Lucio */
-  --plata: #c4c7cf;
   --rojo: #d62828;
-  /* Dark (the game) */
-  --obsidian: #0a0814;
-  --obsidian-2: #0d0b1a;
-  --surface: #12101f;
-  --ink: #f0f4ff;
-  --muted: #8b90b5;
-  --line: rgba(255,255,255,0.07);
-  /* Light (Airbnb-style public) */
-  --paper: #f5f5f4;
-  --paper-2: #ffffff;
-  --ink-d: #1a1a24;
-  --muted-d: #6b6f76;
-  --line-d: rgba(20,20,30,0.08);
 }
 
 @theme inline {
-  --color-obsidian: var(--obsidian);
-  --color-paper: var(--paper);
   --color-azul: var(--tm-azul);
-  --color-dorado: var(--tm-dorado);
   --color-rojo: var(--rojo);
-  --color-ink: var(--ink);
   --font-sans: var(--font-sans);
 }
 
 * { -webkit-tap-highlight-color: transparent; }
 
 html, body {
-  background: var(--obsidian);
-  color: var(--ink);
   font-family: var(--font-sans), system-ui, sans-serif;
   overscroll-behavior: none;
+  background: #f5f5f4;
 }
 body { min-height: 100dvh; }
 
-/* ============ LIGHT PAGE (Airbnb-style) ============ */
-.light {
-  background: var(--paper);
-  color: var(--ink-d);
-  min-height: 100dvh;
+/* ===================== THEME TOKENS (the game) ===================== */
+.theme-light {
+  --app-bg:
+    radial-gradient(900px 520px at 50% -12%, rgba(1,1,115,0.06), transparent 60%),
+    #f4f4f3;
+  --t1: #191920;        /* primary text */
+  --t2: #5c6068;        /* muted */
+  --t3: #9aa0a6;        /* faint */
+  --srf: #ffffff;       /* card surface */
+  --srf2: #ffffff;      /* surface 2 */
+  --hi: rgba(20,20,30,0.045);
+  --hi2: rgba(20,20,30,0.10);
+  --bd: rgba(20,20,30,0.09);
+  --gold: #9c7a12;      /* gold text (darker so it reads on white) */
+  --pos: #047857;       /* positive green */
 }
-.lcard {
-  background: var(--paper-2);
-  border: 1px solid var(--line-d);
-  border-radius: 22px;
-  box-shadow: 0 1px 2px rgba(20,20,30,0.04), 0 10px 30px rgba(20,20,30,0.07);
-}
-.lsoft {
-  background: var(--paper-2);
-  border: 1px solid var(--line-d);
-  border-radius: 18px;
-  box-shadow: 0 1px 3px rgba(20,20,30,0.05);
+.theme-dark {
+  --app-bg:
+    radial-gradient(900px 520px at 50% -12%, rgba(36,50,138,0.22), transparent 60%),
+    radial-gradient(700px 400px at 100% 100%, rgba(201,162,39,0.06), transparent 55%),
+    #0a0814;
+  --t1: #f0f4ff;
+  --t2: #9499b8;
+  --t3: #61668a;
+  --srf: #12101f;
+  --srf2: #0d0b1a;
+  --hi: rgba(255,255,255,0.05);
+  --hi2: rgba(255,255,255,0.12);
+  --bd: rgba(255,255,255,0.09);
+  --gold: #e0c24a;
+  --pos: #6ee7b7;
 }
 
-/* ============ DARK PAGE (the game) ============ */
-.dark-wrap {
-  background:
-    radial-gradient(900px 500px at 50% -10%, rgba(36,50,138,0.22), transparent 60%),
-    radial-gradient(700px 400px at 100% 100%, rgba(201,162,39,0.06), transparent 55%),
-    var(--obsidian);
-  min-height: 100dvh;
+.app-wrap { background: var(--app-bg); min-height: 100dvh; color: var(--t1); }
+
+.card {
+  background: var(--srf);
+  border: 1px solid var(--bd);
+  border-radius: 18px;
 }
+.theme-light .card { box-shadow: 0 1px 2px rgba(20,20,30,0.04), 0 8px 24px rgba(20,20,30,0.06); }
+.theme-dark .card { background: linear-gradient(180deg, #12101f, #0d0b1a); }
+
 .glass {
-  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
-  border: 1px solid var(--line);
+  background: var(--srf);
+  border: 1px solid var(--bd);
   backdrop-filter: blur(12px);
 }
-.card {
-  background: linear-gradient(180deg, var(--surface), var(--obsidian-2));
-  border: 1px solid var(--line);
-  border-radius: 18px;
+.theme-light .glass { background: rgba(255,255,255,0.88); }
+.theme-dark .glass { background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)); }
+
+/* Film grain — dark only */
+.theme-dark .grain::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ============ Shared text effects ============ */
+/* ===================== LIGHT PUBLIC FACE (landing/auth) ===================== */
+.light { background: #f5f5f4; color: #1a1a24; min-height: 100dvh; }
+.lcard { background: #fff; border: 1px solid rgba(20,20,30,0.08); border-radius: 22px; box-shadow: 0 1px 2px rgba(20,20,30,0.04), 0 10px 30px rgba(20,20,30,0.07); }
+.lsoft { background: #fff; border: 1px solid rgba(20,20,30,0.08); border-radius: 18px; box-shadow: 0 1px 3px rgba(20,20,30,0.05); }
+
+/* ===================== Shared effects ===================== */
 .gold {
   background: linear-gradient(135deg, #f0d877, var(--tm-dorado) 50%, #8f7615);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
+.theme-light .gold {
+  background: linear-gradient(135deg, #b8901e, #9c7a12);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
 .chrome {
   background: linear-gradient(180deg, #ffffff, #c8ccd8 45%, #8a8f9e);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.theme-light .chrome {
+  background: linear-gradient(180deg, #3a3a48, #15151c 50%, #4a4a5e);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .chrome-d {
@@ -95,17 +106,9 @@ body { min-height: 100dvh; }
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
-.live-dot { width: 8px; height: 8px; border-radius: 99px; background: #16a34a; box-shadow: 0 0 0 0 rgba(22,163,74,0.5); animation: pulse 1.8s infinite; }
-.live-dot-d { width: 8px; height: 8px; border-radius: 99px; background: #d62828; box-shadow: 0 0 0 0 rgba(214,40,40,0.5); animation: pulse 1.8s infinite; }
+.live-dot-d { width: 8px; height: 8px; border-radius: 99px; background: #16a34a; box-shadow: 0 0 0 0 rgba(22,163,74,0.5); animation: pulse 1.8s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(22,163,74,0.5); } 70% { box-shadow: 0 0 0 9px rgba(22,163,74,0); } 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); } }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 ::-webkit-scrollbar { width: 0; height: 0; }
-
-/* Film grain (dark game only) */
-.grain::before {
-  content: "";
-  position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}

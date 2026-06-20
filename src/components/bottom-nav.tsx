@@ -16,7 +16,7 @@ export function BottomNav() {
   const pathname = usePathname();
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 mx-auto max-w-md">
-      <div className="glass border-t border-white/10 px-1.5 pb-[env(safe-area-inset-bottom)]">
+      <div className="glass border-t border-[var(--bd)] px-1.5 pb-[env(safe-area-inset-bottom)]">
         <div className="flex h-[56px] items-stretch justify-around">
           {TABS.map((t) => {
             const active = pathname === t.href;
@@ -34,8 +34,8 @@ export function BottomNav() {
                     style={{ background: "#d4ba28" }}
                   />
                 )}
-                <Icon size={22} className={active ? "text-[#d4ba28]" : "text-white/45"} />
-                <span className={`text-[10px] font-medium ${active ? "text-white" : "text-white/45"}`}>
+                <Icon size={22} className={active ? "text-[var(--gold)]" : "text-[var(--t2)]"} />
+                <span className={`text-[10px] font-medium ${active ? "text-[var(--t1)]" : "text-[var(--t2)]"}`}>
                   {t.label}
                 </span>
               </Link>
